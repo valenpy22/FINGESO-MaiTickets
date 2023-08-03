@@ -1,17 +1,93 @@
 <template>
     <v-app class="rounded rounded-md">
+        <!-- Componente de la barra que se encuentra arriba -->
         <v-app-bar
-          flat
-          class="pa-md-3"
-          color="#17a499"
-        >
+            flat
+            class="pa-md-3"
+            color="#17a499">
             <appBar />
         </v-app-bar>
+        <!-- Componente principal -->
         <v-main
-          class="d-flex align-center justify-center"
-        >
-        </v-main>
+            class="d-flex align-center justify-center">
+            <!-- Recuadro redondeado de color cyan -->
+            <v-card
+                color="#17a499"
+                :elevation="5"
+                class="rounded-lg px-10 py-5 align-center text-center"
+                min-width="1000">
 
+                <v-row justify="center">
+                    <v-col align-self="center">
+                        <!-- Botón de tickets por responder -->
+                        <v-btn
+                            variant="outlined"
+                            @click=""
+                            class="rounded-lg text-white px-5">
+                            Tickets por responder
+                        </v-btn>
+                    </v-col>
+                </v-row>
+
+                <!-- Espacio para mostrar los tickets -->
+                <v-card-text
+                    align="center"
+                    class="ma-5"
+                    color="#17a499">
+
+                    <v-progress-circular
+                        v-if="loadingTickets"
+                        color="white"
+                        indeterminate>
+                    </v-progress-circular>
+
+                    <!-- Lista de tickets -->
+                    <!-- Si es mayor a 0: -->
+                    <v-list
+                        v-else-if="listTickets.length > 0"
+                        lines="one"
+                        base-color="white"
+                        bg-color="#17a499">
+
+                        <!-- Elemento de la lista -->
+                        <!-- Se identifica según su ticket -->
+                        <v-list-item
+                            v-for="ticket in listTickets"
+                            :key="ticket.idTicket"
+                            variant="outlined"
+                            class="py-3 my-3 rounded-lg">
+
+                           <v-row>
+                              <v-col align-self="center">
+                                  <v-list-item-title class="text-left">
+                                      ID: {{ ticket.idTicket }}<br>Motivo: {{ ticket.category }}
+                                  </v-list-item-title>
+                                  <v-list-item-subtitle class="text-left">
+                                      {{ ticket.description }}
+                                  </v-list-item-subtitle>
+                              </v-col>
+                              <v-col class="d-flex align-center">
+                                  <v-row justify="space-between">
+                                      <v-col>
+                                          <v-btn
+                                              @click="openPopup(ticket.idTicket)"
+                                              variant="text">
+                                              Responder
+                                          </v-btn>
+                                      </v-col>
+                                  </v-row>
+                              </v-col>
+                           </v-row>
+
+                        </v-list-item>
+                    </v-list>
+                    <h3 class="text-white" v-else>
+                        No hay tickets por responder
+                    </h3>
+                </v-card-text>
+            </v-card>
+
+        </v-main>
     </v-app>
 </template>
 
@@ -19,7 +95,6 @@
 import axios from 'axios'
 import appBar from '../appBar.vue'
 import {id} from "vuetify/locale";
-import {addBusinessDays} from "../../dateUtils";
 
 export default {
   name: 'Analyzer',

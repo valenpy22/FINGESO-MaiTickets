@@ -89,7 +89,7 @@
                                             variant="text"
                                             @click="dontImplemented()"
                                             >
-                                                Validar
+                                                Delegar
                                             </v-btn>
                                         </v-col>
                                         <v-col>

@@ -57,7 +57,9 @@
                             variant="outlined"
                             class="py-3 my-3 rounded-lg">
 
+                           <!-- Se hace una fila por cada componente de la lista -->
                            <v-row>
+                              <!-- Se hace una columna que contiene el id, motivo y descripción del ticket -->
                               <v-col align-self="center">
                                   <v-list-item-title class="text-left">
                                       ID: {{ ticket.idTicket }}<br>Motivo: {{ ticket.category }}
@@ -66,9 +68,12 @@
                                       {{ ticket.description }}
                                   </v-list-item-subtitle>
                               </v-col>
+                              <!-- Se hace una columna más, donde se le insertará una fila. -->
                               <v-col class="d-flex align-center">
                                   <v-row justify="space-between">
+                                      <!-- Se le agrega una columna -->
                                       <v-col>
+                                          <!-- Se le agrega un botón con el texto "Responder" -->
                                           <v-btn
                                               @click="openPopup(ticket.idTicket)"
                                               variant="text">
@@ -78,9 +83,9 @@
                                   </v-row>
                               </v-col>
                            </v-row>
-
                         </v-list-item>
                     </v-list>
+                    <!-- Si la lista de tickets por responder es 0, se coloca este mensaje -->
                     <h3 class="text-white" v-else>
                         No hay tickets por responder
                     </h3>

@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import Login from "../components/pages/Login.vue";
 import AddTicket from "../components/pages/AddTicket.vue";
 import LeadershipAssign from "../components/pages/LeadershipAssign.vue";
+import Analyzer from "@/components/pages/Analyzer.vue";
 
 const routes = [
     {
@@ -23,6 +24,11 @@ const routes = [
         path: '/assign-ticket',
         name: 'assign-ticket',
         component: LeadershipAssign,
+    },
+    {
+        path: '/analyze-ticket',
+        name: 'analyze-ticket',
+        component: Analyzer,
     }
 ]
 
